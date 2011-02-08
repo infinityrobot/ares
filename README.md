@@ -8,10 +8,12 @@ As a result, in order to use Ares you will have to have the Thor gem installed
   gem install thor
   
 You can use Ares to:
+
 * You shall soon see ;)
 
 ## Links
 Want to start developing your own Thor tasks? Here are some awesome links:
+
 * http://github.com/wycats/thor
 * http://stackoverflow.com/questions/4604905/interactive-prompt-with-thor
 * http://stackoverflow.com/questions/4801920/is-it-possible-to-call-git-or-other-command-line-tools-from-inside-a-thor-script
