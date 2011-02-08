@@ -30,7 +30,7 @@ As Ares is a set of Thor tasks, you will have to have the Thor gem installed to 
 
 As Thor allows the install of tasks, to be able to use Ares anywhere you should install it. You can install Ares by running:
 
-    thor install http://github.com/infinityrobot/ares/blob/master/ares.thor
+    thor install https://github.com/infinityrobot/ares/raw/master/ares.thor
 
 Now no matter which directory you are in, you will be able to use Ares.
 
