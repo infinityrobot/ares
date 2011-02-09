@@ -86,4 +86,21 @@ class Ares < Thor
     end
   end
   
+  # github - Set up remote repository and push
+  def github
+    if yes?("Does the app have a GitHub repository? (yes/no) ")
+      github_username = ask("What is your GitHub username? ", CYAN)
+      github_repository = ask("What is the repository name? ", CYAN)
+      github_path = "git@github.com:#{github_username}/#{github_repository}.git"
+      # Add remote repository
+      system("git remote add origin #{github_path}")
+      # Push to remote repository
+      if yes?("Would you like to push to #{github_path}? (yes/no) ")
+        say("Pushing to master at #{github_path}...")
+        system("git push origin master")
+        say("Your app has been pushed!", GREEN)
+     end
+    end
+  end
+  
 end
