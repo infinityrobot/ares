@@ -10,7 +10,7 @@ class Ares < Thor
   
   default_files = ["public/index.html", "public/images/rails.png"]
   
-  # NEW APP
+  # new - Create a new app
   desc "new", "Create a new Rails app."
   def new
     
@@ -39,7 +39,17 @@ class Ares < Thor
     system("git commit -a -m \"Initial commit.\" -q")
     say("Rails app created and Git repository initialized in #{app_directory}", GREEN)
     
-    # => Remove default rails files
+    # => Invoke other tasks!
+    invoke :default_files
+    invoke :jquery
+    invoke :testing
+    invoke :github
+    
+  end
+  
+  # default_files - Remove Default Rails files
+  desc "default_files", "Removes the default Rails files and clears the README"
+  def default_files
     if yes?("Remove the default Rails files and README? (yes/no) ", CYAN)
       default_files.each do |file|
         File.delete(file)
@@ -52,8 +62,11 @@ class Ares < Thor
       system("git commit -a -m \"Removed default Rails files and README.\" -q")
       say("Default Rails files and README have been deleted!", GREEN)
     end
-    
-    # => Use jQuery instead of prototype
+  end
+  
+  # jquery - Set jQuery as the default javascript framework
+  desc "jquery", "Set jQuery as the default javascript framework instead of Prototype."
+  def jquery
     if yes?("Would you like to use jQuery instead of Prototype? (yes/no) ", CYAN)
       # Remove Prototype files
       gemfile = File.open("Gemfile", "a")
@@ -71,21 +84,6 @@ class Ares < Thor
       system("git add .")
       system("git commit -a -m \"Installed jQuery as default javascript framework.\" -q")    
     end
-    
-    # => Set up testing frameworks
-    
-    # # => Setting and pushing to remote repository
-    # if yes?("Does the app have a GitHub repository? (yes/no) ")
-    #   github_username = ask("What is your GitHub username? ", CYAN)
-    #   github_repository = ask("What is the repository name? ", CYAN)
-    #   # Add remote repository
-    #   system("git remote add origin git@github.com:#{github_username}/#{github_repository}.git")
-    #   # Push to remote repository
-    #   say("Pushing to master...")
-    #   system("git push origin master")
-    #   say("Your app has been pushed!", GREEN)
-    # end
-    
   end
   
 end
