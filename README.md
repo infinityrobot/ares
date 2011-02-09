@@ -54,9 +54,14 @@ The full list of Ares commands:
 In order to do what Ares does there is a number of tools that are used:
 
 * [Thor](http://github.com/wycats/thor): The scripting framework Ares is built on
-* [jquery-rails](http://github.com/indirect/jquery-rails): The gem used to install jQuery as the default javascript framework.
 * [Devise](http://github.com/plataformatec/devise): Devise gem for user authentication.
 * [OmniAuth](http://github.com/intridea/omniauth): OmniAuth gem for external authentications.
+* [Cucumber](http://github.com/aslakhellesoy/cucumber-rails): Cucumber for integration testing.
+* [RSpec](http://github.com/rspec/rspec-rails): RSpec for unit testing.
+* [Machinist](http://github.com/notahat/machinist) & [Faker](http://faker.rubyforge.org/): For populating test database with seed data.
+* [Fakeweb](http://github.com/chrisk/fakeweb): Blocks HTTP requests during tests (great for stubbing out Google Maps requests in tests!)
+* [email_spec](http://github.com/bmabey/email-spec): Allows testing of emails in Cucumber.
+* [jquery-rails](http://github.com/indirect/jquery-rails): The gem used to install jQuery as the default javascript framework.
 * [Markdown](http://daringfireball.net/projects/markdown/): Markdown for this README.
 
 Thanks a million to all of the developers that have worked on these tools and made them what they are, I would not survive without them!

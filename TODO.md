@@ -5,3 +5,4 @@
 * Output error if initial push fails.
 * Add appropriate needs to gitgnore
 * App rename command
+* Capistrano deployment
