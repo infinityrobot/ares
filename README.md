@@ -8,15 +8,19 @@ Ares is built of Yehuda Katz's awesome Rake like utility, [Thor](http://github.c
 
 ## What does Ares do?
 
-Ares makes making Rails apps super easy, it does this by doing most of the boring stuff for you, including:
+Ares makes making Rails apps super easy, it does this by doing most of the boring stuff for you.
 
-1. Creates your Rails app
+1. Creates your Rails app.
 2. Initializes a Git repository and initial commit.
-3. Adds a .gitignore file
+3. Adds a .gitignore file.
 4. Removes the default Rails files (index.html, etc)
 5. Installs jQuery and removes Prototype as the default javascript framework (with jQuery rails.js)
-6. Sets up the testing frameworks of your choice (Cucumber, RSpec, etc) and configures
-7. Sets up a remote GitHub repository and pushes to origin master
+6. Sets up the testing frameworks of your choice (Cucumber, RSpec, etc) and configures.
+7. Sets up a remote GitHub repository and pushes to origin master.
+8. Sets up Pivotal Tracker support with Pickler.
+9. Sets up Capistrano deployment recipes and tasks.
+10. Sets up home controller.
+11. Sets up User authentication.
 
 All with clean commits between each step if you ever change your mind!
 
