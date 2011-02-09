@@ -86,6 +86,23 @@ class Ares < Thor
     end
   end
   
+  # testing - Set up Testing Framworks
+  desc "testing", "Sets up testing frameworks for your app."
+  def testing
+    cucumber = yes?("Would you like to use Cucumber for integration testing? (yes/no) ", CYAN) ? true : false
+    capybara = yes?("Would you like to use Capybara for interactions? (yes/no) ", CYAN) ? true : false
+    rspec = yes?("Would you like to use RSpec for unit testing? (yes/no) ", CYAN) ? true : false
+    # => Add cucumber and other required gems to Gemfile
+    if cucumber?
+    end
+    if capybara?
+    end
+    if rspec?
+    end
+    # => Run generator command
+    system("rails generate cucumber --capybara --rspec")
+  end
+  
   # github - Set up remote repository and push
   def github
     if yes?("Does the app have a GitHub repository? (yes/no) ")
@@ -102,5 +119,4 @@ class Ares < Thor
      end
     end
   end
-  
 end
