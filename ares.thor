@@ -103,6 +103,12 @@ class Ares < Thor
     system("rails generate cucumber --capybara --rspec")
   end
   
+  # pivotal - Set up Pivotal Tracker project
+  desc "pivotal", "Add Pivotal Tracker support through the Pickler gem."
+  def pivotal
+    # => Pivotal code
+  end
+  
   # github - Set up remote repository and push
   def github
     if yes?("Does the app have a GitHub repository? (yes/no) ")
