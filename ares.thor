@@ -46,6 +46,7 @@ class Ares < Thor
     invoke :testing
     invoke :pivotal
     invoke :github
+    invoke :capsitrano
     
   end
   
@@ -87,12 +88,10 @@ class Ares < Thor
   # testing - Set up Testing Framworks
   desc "testing", "Sets up testing frameworks for your app."
   def testing
-    
     cucumber = yes?("Would you like to use Cucumber for integration testing? (yes/no) ", CYAN) ? true : false
     rspec = yes?("Would you like to use RSpec for unit testing? (yes/no) ", CYAN) ? true : false
     seed = yes?("Would you like to seed test data in your tests? [Adds machinist and faker gems] (yes/no) ", CYAN) ? true : false
     fakeweb = yes?("Would you like to block HTTP requests in your tests? [Adds fakeweb gem] (yes/no) ", CYAN) ? true : false
-    
     if cucumber == true
       capybara = yes?("Would you like to use Capybara for interactions with Cucumber? (yes/no) ", CYAN) ? true : false
       emails = yes?("Would you like to test the sending / reciept of emails? [Adds email_spec gem] (yes/no) ", CYAN) ? true : false
@@ -189,5 +188,12 @@ end
      end
     end
   end
+  
+  # capistrano - Set up remote repository and push
+  desc "capistrano", "Add Capistrano support for easy deployment."
+  def capistrano
+    # => Capistrano code here
+  end
+  
   
 end
