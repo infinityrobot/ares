@@ -8,7 +8,8 @@ class Ares < Thor
   CYAN = "\e[36m"
   MAGENTA = "\e[35m"
   
-  default_files = ["public/index.html", "public/images/rails.png"]
+  DEFAULT_FILES = ["public/index.html", "public/images/rails.png"]
+  
   
   # new - Create a new app
   desc "new", "Create a new Rails app."
@@ -43,6 +44,7 @@ class Ares < Thor
     invoke :default_files
     invoke :jquery
     invoke :testing
+    invoke :pivotal
     invoke :github
     
   end
@@ -51,7 +53,7 @@ class Ares < Thor
   desc "default_files", "Removes the default Rails files and clears the README"
   def default_files
     if yes?("Remove the default Rails files and README? (yes/no) ", CYAN)
-      default_files.each do |file|
+      DEFAULT_FILES.each do |file|
         File.delete(file)
         say("Deleted the file #{file}.")
       end
@@ -68,18 +70,14 @@ class Ares < Thor
   desc "jquery", "Set jQuery as the default javascript framework instead of Prototype."
   def jquery
     if yes?("Would you like to use jQuery instead of Prototype? (yes/no) ", CYAN)
+      jquery_ui = yes?("Would you like to install jQuery UI as well? (yes/no) ", CYAN) ? true : false
       # Remove Prototype files
       gemfile = File.open("Gemfile", "a")
       gemfile.syswrite("gem \"jquery-rails\"")
       say("Adding jquery-rails gem to Gemfile and running bundle update...")
       system("bundle install --quiet")
-      if yes?("Would you like to install jQuery UI as well? (yes/no) ", CYAN)
-        system("rails generate jquery:install --ui")
-        say("Installed jQuery / jQuery UI as default javascript framework.", GREEN)
-      else
-        system("rails generate jquery:install")
-        say("Installed jQuery as default javascript framework.", GREEN)
-      end
+      system("rails generate jquery:install #{"--ui" if jquery_ui == true}")
+      say("Installed jQuery#{" & jQuery UI" if jquery_ui == true} as default javascript framework.", GREEN)
       # Commit changes
       system("git add .")
       system("git commit -a -m \"Installed jQuery as default javascript framework.\" -q")    
@@ -90,17 +88,17 @@ class Ares < Thor
   desc "testing", "Sets up testing frameworks for your app."
   def testing
     cucumber = yes?("Would you like to use Cucumber for integration testing? (yes/no) ", CYAN) ? true : false
-    capybara = yes?("Would you like to use Capybara for interactions? (yes/no) ", CYAN) ? true : false
-    rspec = yes?("Would you like to use RSpec for unit testing? (yes/no) ", CYAN) ? true : false
+    if cucumber == true
+      capybara = yes?("Would you like to use Capybara for interactions? (yes/no) ", CYAN) ? true : false
+      rspec = yes?("Would you like to use RSpec for unit testing? (yes/no) ", CYAN) ? true : false
+    end
     # => Add cucumber and other required gems to Gemfile
-    if cucumber?
+    
+    # => Run generator command based on paramters provided
+    if cucumber == true
+      system("rails generate cucumber#{" --capybara" if capybara == true}#{" --rspec" if rspec == true}")
     end
-    if capybara?
-    end
-    if rspec?
-    end
-    # => Run generator command
-    system("rails generate cucumber --capybara --rspec")
+    
   end
   
   # pivotal - Set up Pivotal Tracker project
@@ -110,6 +108,7 @@ class Ares < Thor
   end
   
   # github - Set up remote repository and push
+  desc "github", "Add remote GitHub repository to app and push."
   def github
     if yes?("Does the app have a GitHub repository? (yes/no) ")
       github_username = ask("What is your GitHub username? ", CYAN)
