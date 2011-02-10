@@ -85,6 +85,16 @@ class Ares < Thor
     end
   end
   
+  # forms - Use formtastic for semantic webforms
+  desc "forms", "Adds Formtastic support for semantic web forms."
+  def forms
+    gemfile = File.open("Gemfile", "a")
+    gemfile.syswrite("gem \"formtastic\"")
+    # Commit changes
+    system("git add .")
+    system("git commit -a -m \"Added Formtastic for semantic web forms.\" -q")    
+  end
+  
   # testing - Set up Testing Framworks
   desc "testing", "Sets up testing frameworks for your app."
   def testing
