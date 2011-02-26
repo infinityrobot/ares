@@ -3,7 +3,7 @@ class Ares < Thor
   
   # ADD GEM TO DEVELOPMENT GROUP
   # gemfile = File.read("Gemfile")
-  # gemfile = gemfile.gsub("group :development do", "group :development do\n  gem \"gemname\"")
+  # gemfile = gemfile.gsub("source 'http://rubygems.org'", "source 'http://rubygems.org'\n\n  gem \"gemname\"")
   # File.delete("Gemfile")
   # File.open("Gemfile", "+w").write(gemfile)
   
@@ -89,9 +89,11 @@ class Ares < Thor
       jquery_ui = yes?("Would you like to install jQuery UI as well? (y/n) ", :yellow) ? true : false
       
       # => Remove Prototype files
-      gemfile = File.open("Gemfile", "a")
-      gemfile.write("gem \"jquery-rails\"")
       say "Adding jquery-rails gem to Gemfile and running bundle update..."
+      gemfile = File.read("Gemfile")
+      gemfile = gemfile.gsub("source 'http://rubygems.org'", "source 'http://rubygems.org'\n\n  gem \"jquery-rails\"")
+      File.delete("Gemfile")
+      File.open("Gemfile", "+w").write(gemfile)
       system "bundle install --quiet"
       system "rails generate jquery:install #{"--ui" if jquery_ui == true}"
       say "Installed jQuery#{" & jQuery UI" if jquery_ui == true} as default javascript framework.", :green
@@ -221,8 +223,10 @@ end
     
     # => Add Devise gem to Gemfile
     say "Adding Devise gem to Gemfile..."
-    gemfile = File.open("Gemfile", "a")
-    gemfile.write("\ngem 'devise'                      # => For user authentication - http://github.com/plataformatec/devise")
+    gemfile = File.read("Gemfile")
+    gemfile = gemfile.gsub("source 'http://rubygems.org'", "source 'http://rubygems.org'\n\n  gem 'devise'                      # => For user authentication - http://github.com/plataformatec/devise")
+    File.delete("Gemfile")
+    File.open("Gemfile", "+w").write(gemfile)
     say "Running bundle install..."
     system "bundle install --quiet"
     system "git add ."
@@ -300,8 +304,10 @@ gem 'ruby_parser'               # => For generating HAML Devise views
     if yes? "Would you like use Omniauth with Devise for external authentication? This will only work for a model named 'User'! (y/n) ", :red
       
       # => Add Omniauth gem to Gemfile
-      gemfile = File.open("Gemfile", "a")
-      gemfile.write("gem 'omniauth'                    # => Allows the use of external authentications - http://github.com/intridea/omniauth")
+      gemfile = File.read("Gemfile")
+      gemfile = gemfile.gsub("source 'http://rubygems.org'", "source 'http://rubygems.org'\n\n  gem 'omniauth'                    # => Allows the use of external authentications - http://github.com/intridea/omniauth")
+      File.delete("Gemfile")
+      File.open("Gemfile", "+w").write(gemfile)
       system "git add ."
       system "git commit -a -m \"Added OmniAuth to Gemfile.\" -q"
       say "Added OmniAuth to Gemfile", :green
