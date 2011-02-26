@@ -6,3 +6,5 @@
 * Add appropriate needs to gitgnore
 * App rename command
 * Capistrano deployment
+* Set Global template engine generator variables and remove from separate tasks.
+* At end of generating a new app create a README file that summarises all of the inclusions and how to use them.
