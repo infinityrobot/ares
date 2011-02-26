@@ -10,8 +10,9 @@ class Ares < Thor
   
   DEFAULT_FILES = ["public/index.html", "public/images/rails.png"]
   
-  
-  # new - Create a new app
+  # --------------------------------------------------------------------------------------------------- #
+  # new - Create a new app                                                                              #
+  # --------------------------------------------------------------------------------------------------- #
   desc "new", "Create a new Rails app."
   def new
     
@@ -50,7 +51,9 @@ class Ares < Thor
     
   end
   
-  # default_files - Remove Default Rails files
+  # --------------------------------------------------------------------------------------------------- #
+  # default_files - Remove Default Rails files                                                          #
+  # --------------------------------------------------------------------------------------------------- #
   desc "default_files", "Removes the default Rails files and clears the README"
   def default_files
     if yes?("Remove the default Rails files and README? (yes/no) ", CYAN)
@@ -67,7 +70,9 @@ class Ares < Thor
     end
   end
   
-  # jquery - Set jQuery as the default javascript framework
+  # --------------------------------------------------------------------------------------------------- #
+  # jquery - Set jQuery as the default javascript framework                                             #
+  # --------------------------------------------------------------------------------------------------- #
   desc "jquery", "Set jQuery as the default javascript framework instead of Prototype."
   def jquery
     if yes?("Would you like to use jQuery instead of Prototype? (yes/no) ", CYAN)
@@ -85,7 +90,9 @@ class Ares < Thor
     end
   end
   
-  # forms - Use formtastic for semantic webforms
+  # --------------------------------------------------------------------------------------------------- #
+  # forms - Use formtastic for semantic webforms                                                        #
+  # --------------------------------------------------------------------------------------------------- #
   desc "forms", "Adds Formtastic support for semantic web forms."
   def forms
     gemfile = File.open("Gemfile", "a")
@@ -95,7 +102,9 @@ class Ares < Thor
     system("git commit -a -m \"Added Formtastic for semantic web forms.\" -q")    
   end
   
-  # testing - Set up Testing Framworks
+  # --------------------------------------------------------------------------------------------------- #
+  # testing - Set up Testing Framworks                                                                  #
+  # --------------------------------------------------------------------------------------------------- #
   desc "testing", "Sets up testing frameworks for your app."
   def testing
     cucumber = yes?("Would you like to use Cucumber for integration testing? (yes/no) ", CYAN) ? true : false
@@ -175,13 +184,17 @@ end
     end
   end
   
-  # pivotal - Set up Pivotal Tracker project
+  # --------------------------------------------------------------------------------------------------- #
+  # pivotal - Set up Pivotal Tracker project                                                            #
+  # --------------------------------------------------------------------------------------------------- #
   desc "pivotal", "Add Pivotal Tracker support through the Pickler gem."
   def pivotal
     # => Pivotal code
   end
   
-  # github - Set up remote repository and push
+  # --------------------------------------------------------------------------------------------------- #
+  # github - Set up remote repository and push                                                          #
+  # --------------------------------------------------------------------------------------------------- #
   desc "github", "Add remote GitHub repository to app and push."
   def github
     if yes?("Does the app have a GitHub repository? (yes/no) ", CYAN)
@@ -199,7 +212,9 @@ end
     end
   end
   
-  # capistrano - Set up remote repository and push
+  # --------------------------------------------------------------------------------------------------- #
+  # capistrano - Set up deploy.rb for Capistrano deployment                                             #
+  # --------------------------------------------------------------------------------------------------- #
   desc "capistrano", "Add Capistrano support for easy deployment."
   def capistrano
     # => Capistrano code here
